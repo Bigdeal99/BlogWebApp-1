@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\Infrastructure\\Infrastructure.csproj": {}
+    "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\basam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\basam\\AppData\\Roaming\\NuGet\\NuGet.Config"

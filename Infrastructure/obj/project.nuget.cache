@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QirpA+x5hMHdrwXQ709hYUVVFp/l+9B8cClekHhyyUJP5sDtPxvDE/w5jdJ+6d2ytcnedjDOzJZ9DI711taiyg==",
+  "dgSpecHash": "fd7uCFoSCjZHljNlm2Q0EydrYAzAQgVCLQtq47l25MGZP+LiKMKIclgpFLfSheFzzlCJWnTlcoNYaYjA37rDyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\basam\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0-preview.7.23375.9\\microsoft.aspnetcore.openapi.8.0.0-preview.7.23375.9.nupkg.sha512",
     "C:\\Users\\basam\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
