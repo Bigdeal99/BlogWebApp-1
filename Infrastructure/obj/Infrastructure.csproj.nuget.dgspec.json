@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj": {}
+    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Infrastructure/Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj": {
+    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Infrastructure/Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\basam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Infrastructure\\obj\\",
+        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Infrastructure/Infrastructure.csproj",
+        "packagesPath": "/Users/marcelohani/.nuget/packages/",
+        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\basam\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-preview.7.23376.3\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100-preview.7.23376.3/RuntimeIdentifierGraph.json"
         }
       }
     }

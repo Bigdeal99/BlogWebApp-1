@@ -460,19 +460,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\basam\\.nuget\\packages\\": {}
+    "/Users/marcelohani/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Service\\Service.csproj",
+      "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Service/Service.csproj",
       "projectName": "Service",
-      "projectPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Service\\Service.csproj",
-      "packagesPath": "C:\\Users\\basam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\basam\\RiderProjects\\BlogWebApp\\BlogWebApp\\Service\\obj\\",
+      "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Service/Service.csproj",
+      "packagesPath": "/Users/marcelohani/.nuget/packages/",
+      "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Service/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\basam\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -527,7 +527,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-preview.7.23376.3\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100-preview.7.23376.3/RuntimeIdentifierGraph.json"
       }
     }
   }
