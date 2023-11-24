@@ -1,0 +1,12 @@
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Api
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/appsettings.Development.json
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/appsettings.json
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Api.dll
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Api.deps.json
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Api.runtimeconfig.json
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Api.pdb
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Microsoft.AspNetCore.OpenApi.dll
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Microsoft.OpenApi.dll
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Swashbuckle.AspNetCore.Swagger.dll
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Swashbuckle.AspNetCore.SwaggerGen.dll
+/var/folders/m5/1dk454r971s369vp27g4wxm80000gn/T/rider-publish5492420898848761154/Swashbuckle.AspNetCore.SwaggerUI.dll
