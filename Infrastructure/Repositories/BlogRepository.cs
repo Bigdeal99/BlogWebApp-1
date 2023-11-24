@@ -2,96 +2,86 @@ using Dapper;
 using infrastructure.DataModels;
 using infrastructure.QueryModels;
 using Npgsql;
+using System;
+using System.Collections.Generic;
 
-namespace infrastructure.Repositories;
-
-public class BlogRepository
+namespace infrastructure.Repositories
 {
-    private NpgsqlDataSource _dataSource;
-
-    public BlogRepository(NpgsqlDataSource datasource)
+    public class BlogRepository
     {
-        _dataSource = datasource;
-    }
+        private NpgsqlDataSource _dataSource;
 
-    public IEnumerable<BoxFeedQuery> GetBoxForFeed()
-    {
-        string sql = $@"
-SELECT boxid as {nameof(BoxFeedQuery.BoxId)},
-       boxname as {nameof(BoxFeedQuery.BoxName)},
-       boxweight as {nameof(BoxFeedQuery.BoxWeight)}
-FROM box_factory.boxes;
+        public BlogRepository(NpgsqlDataSource datasource)
+        {
+            _dataSource = datasource;
+        }
+
+        public IEnumerable<BlogFeedQuery> GetBlogsForFeed()
+        {
+            string sql = $@"
+SELECT blogid as {nameof(BlogFeedQuery.BlogId)},
+       title as {nameof(BlogFeedQuery.Title)},
+       summary as {nameof(BlogFeedQuery.Summary)},
+       publicationdate as {nameof(BlogFeedQuery.PublicationDate)}
+FROM your_blog_table_name;
 ";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.Query<BoxFeedQuery>(sql);
+            using (var conn = _dataSource.OpenConnection())
+            {
+                return conn.Query<BlogFeedQuery>(sql);
+            }
         }
-    }
 
-
-    public Blog UpdateBox(int boxId, string boxName, double boxWeight)
-    {
-        var sql = $@"
-UPDATE box_factory.boxes SET boxname = @boxName,boxweight = @boxWeight
-WHERE boxid = @boxId
-RETURNING boxid as {nameof(Blog.BlogId)},
-       boxname as {nameof(Blog.BlogTitle)},
-       boxweight as {nameof(BoxFeedQuery.BoxWeight)}
-";
-
-        using (var conn = _dataSource.OpenConnection())
+        public Blog GetBlogById(int blogId)
         {
-            return conn.QueryFirst<Blog>(sql, new { boxId, boxName, boxWeight });
-        }
-    }
-
-    public Blog CreateBox(string boxName, double boxWeight)
-    {
-        var sql = $@"
-INSERT INTO box_factory.boxes (boxname, boxweight) 
-VALUES (@boxName, @boxWeight)
-RETURNING boxid as {nameof(Blog.BlogId)},
-       boxname as {nameof(Blog.BlogTitle)},
-       boxweight as {nameof(BoxFeedQuery.BoxWeight)}
-        
-";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.QueryFirst<Blog>(sql, new { boxName, boxWeight });
-        }
-    }
-
-    public bool DeleteBox(int boxId)
-    {
-        var sql = @"DELETE FROM box_factory.boxes WHERE boxId = @boxId;";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.Execute(sql, new { boxId }) == 1;
-        }
-    }
-
-    public bool DoesBoxtWithNameExist(string boxName)
-    {
-        var sql = @"SELECT COUNT(*) FROM box_factory.boxes WHERE boxname = @boxName;";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.ExecuteScalar<int>(sql, new { boxName }) == 1;
-        }
-    }
-
-    public async Task<Blog> GetBoxByIdAsync(int boxId)
-    {
-        string sql = $@"
-SELECT boxid as {nameof(Blog.BlogId)},
-       boxname as {nameof(Blog.BlogTitle)},
-       boxweight as {nameof(Blog.BoxWeight)}
-FROM box_factory.boxes
-WHERE boxid = @boxId;
+            string sql = $@"
+SELECT blogid as {nameof(Blog.BlogId)},
+       title as {nameof(Blog.Title)},
+       content as {nameof(Blog.Content)},
+       publicationdate as {nameof(Blog.PublicationDate)}
+FROM your_blog_table_name
+WHERE blogid = @blogId;
 ";
 
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return await conn.QueryFirstOrDefaultAsync<Blog>(sql, new { boxId });
+            using (var conn = _dataSource.OpenConnection())
+            {
+                return conn.QueryFirstOrDefault<Blog>(sql, new { blogId });
+            }
         }
+
+        public IEnumerable<string> GetCategories()
+        {
+            string sql = "SELECT DISTINCT category FROM your_category_table_name;";
+            using (var conn = _dataSource.OpenConnection())
+            {
+                return conn.Query<string>(sql);
+            }
+        }
+
+        public Blog CreateBlog(string title, string content, DateTime publicationDate, List<string> categories)
+        {
+            // Add logic to insert the blog into the database and return the created blog
+        }
+
+        public bool UpdateBlog(int blogId, string title, string content, List<string> categories)
+        {
+            // Add logic to update the blog in the database and return true if successful
+        }
+
+        public bool DeleteBlog(int blogId)
+        {
+            // Add logic to delete the blog from the database and return true if successful
+        }
+
+        public IEnumerable<Comment> GetCommentsForBlog(int blogId)
+        {
+            // Add logic to retrieve comments for a specific blog from the database
+        }
+
+        public Comment AddCommentToBlog(int blogId, string commenterName, string email, string text)
+        {
+            // Add logic to insert a comment for a specific blog into the database and return the created comment
+        }
+
+        // Other methods for additional functionalities can be added here
     }
 }

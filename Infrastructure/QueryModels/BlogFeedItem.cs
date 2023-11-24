@@ -1,9 +1,9 @@
 namespace infrastructure.QueryModels;
 
-public class BoxFeedQuery
+public class BlogFeedQuery
 {
-    public string BoxName { get; set; }
-    public int BoxId { get; set; }
+    public string BlogTitle { get; set; }
+    public int BlogId { get; set; }
     public double BoxWeight { get; set; } 
 
 }

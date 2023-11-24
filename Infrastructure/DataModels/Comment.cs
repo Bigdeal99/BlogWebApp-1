@@ -2,9 +2,9 @@ namespace infrastructure.DataModels;
 
 public class Comment
 {
-    public int Id { get; set; } // Unique identifier for the comment
-    public string CommenterName { get; set; } // Name of the commenter
-    public string Email { get; set; } // Email of the commenter (optional)
-    public string Text { get; set; } // Comment text
+    public int Id { get; set; } 
+    public string CommenterName { get; set; } 
+    public string Email { get; set; } 
+    public string Text { get; set; } 
     public DateTime PublicationDate { get; set; }
 }
