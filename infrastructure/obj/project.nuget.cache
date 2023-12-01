@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "FESd0ZPtaPTQcaCAS5vl3yMWYjC62abPOQtqbDumEGA75JoU29Xd4KRxW8tGjWCo+7AxrxKc9GgQlUfcRy5jJQ==",
+  "success": true,
+  "projectFilePath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/Users/marcelohani/.nuget/packages/dapper/2.1.24/dapper.2.1.24.nupkg.sha512",
+    "/Users/marcelohani/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/Users/marcelohani/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/Users/marcelohani/.nuget/packages/npgsql/8.0.0/npgsql.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
