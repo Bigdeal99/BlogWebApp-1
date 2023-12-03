@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj": {}
+    "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj": {}
   },
   "projects": {
-    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj": {
+    "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj",
+        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj",
         "projectName": "Api",
-        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj",
+        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj",
         "packagesPath": "/Users/marcelohani/.nuget/packages/",
-        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/obj/",
+        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj": {
-                "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj"
+              "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj": {
+                "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj"
               },
-              "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj": {
-                "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj"
+              "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj": {
+                "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj"
               }
             }
           }
@@ -88,14 +88,14 @@
         }
       }
     },
-    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj": {
+    "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj",
+        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj",
         "projectName": "infrastructure",
-        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj",
+        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj",
         "packagesPath": "/Users/marcelohani/.nuget/packages/",
-        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/",
+        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
@@ -154,14 +154,14 @@
         }
       }
     },
-    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj": {
+    "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj",
+        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj",
         "projectName": "service",
-        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj",
+        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj",
         "packagesPath": "/Users/marcelohani/.nuget/packages/",
-        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/",
+        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/marcelohani/.nuget/NuGet/NuGet.Config"

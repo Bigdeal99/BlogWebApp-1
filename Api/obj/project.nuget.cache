@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0sysViTNM5ODmCu8wfX8MMdf/7BH5JEMBzVvzmGoMfX60W+yPgBjAbrKmlxLj9vel3Pbk5c2RRAe/UrdwmjstQ==",
+  "dgSpecHash": "76k+HInAiwjy3uPayJmkZU/O+VoY0etm5K1ajGxseNWijFDDZwT8U9NBA2fmI5vj4e37JiUhWYRVFAi+1xnRkg==",
   "success": true,
-  "projectFilePath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj",
+  "projectFilePath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj",
   "expectedPackageFiles": [
     "/Users/marcelohani/.nuget/packages/dapper/2.1.24/dapper.2.1.24.nupkg.sha512",
     "/Users/marcelohani/.nuget/packages/microsoft.aspnetcore.openapi/8.0.0-preview.7.23375.9/microsoft.aspnetcore.openapi.8.0.0-preview.7.23375.9.nupkg.sha512",

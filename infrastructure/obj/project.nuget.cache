@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FESd0ZPtaPTQcaCAS5vl3yMWYjC62abPOQtqbDumEGA75JoU29Xd4KRxW8tGjWCo+7AxrxKc9GgQlUfcRy5jJQ==",
+  "dgSpecHash": "BZDg/T1T5M0yDU8/NU9yxdrKHVIXH30eOYGCw/zfeLItswhCTh8SIR8OLJCktwhWtYuqwW2N5N91fmkz/Wiysg==",
   "success": true,
-  "projectFilePath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj",
+  "projectFilePath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/marcelohani/.nuget/packages/dapper/2.1.24/dapper.2.1.24.nupkg.sha512",
     "/Users/marcelohani/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
