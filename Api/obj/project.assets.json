@@ -293,6 +293,9 @@
       "service/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "infrastructure": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/service.dll": {}
         },
@@ -969,11 +972,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj",
+      "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj",
       "projectName": "Api",
-      "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/Api.csproj",
+      "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj",
       "packagesPath": "/Users/marcelohani/.nuget/packages/",
-      "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/Api/obj/",
+      "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
@@ -988,11 +991,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj": {
-              "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/infrastructure/infrastructure.csproj"
+            "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj": {
+              "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj"
             },
-            "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj": {
-              "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj"
+            "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj": {
+              "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj"
             }
           }
         }

@@ -3,12 +3,12 @@ using api.CustomDataAnnotations;
 
 namespace api.TransferModels;
 
-public class CreateBoxRequestDto
+public class CreateBlogRequestDto
 {
     [Length(4,6)]
     [Required]
-    public string BoxName { get; set; }
+    public string blogTitle { get; set; }
     
     [Required]
-    public double BoxWeight { get; set; }
+    public double blogContent { get; set; }
 }

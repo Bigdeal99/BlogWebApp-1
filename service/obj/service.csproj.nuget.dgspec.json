@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj": {}
+    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj": {}
   },
   "projects": {
-    "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj": {
+    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj",
-        "projectName": "service",
-        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/service.csproj",
+        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj",
+        "projectName": "infrastructure",
+        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj",
         "packagesPath": "/Users/marcelohani/.nuget/packages/",
-        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/blogwebapp/service/obj/",
+        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
@@ -26,6 +26,76 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.24, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100-preview.7.23376.3/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj",
+        "projectName": "service",
+        "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/service.csproj",
+        "packagesPath": "/Users/marcelohani/.nuget/packages/",
+        "outputPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/marcelohani/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj": {
+                "projectPath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/infrastructure.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

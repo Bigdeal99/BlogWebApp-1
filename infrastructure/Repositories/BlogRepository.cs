@@ -29,35 +29,35 @@ FROM box_factory.boxes;
     }
 
 
-    public Box UpdateBox(int boxId, string boxName, double boxWeight)
+    public Blog UpdateBox(int boxId, string boxName, double boxWeight)
     {
         var sql = $@"
 UPDATE box_factory.boxes SET boxname = @boxName,boxweight = @boxWeight
 WHERE boxid = @boxId
-RETURNING boxid as {nameof(Box.BoxId)},
-       boxname as {nameof(Box.BoxName)},
+RETURNING boxid as {nameof(Blog.BoxId)},
+       boxname as {nameof(Blog.BoxName)},
        boxweight as {nameof(BoxFeedQuery.BoxWeight)}
 ";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Box>(sql, new { boxId, boxName, boxWeight });
+            return conn.QueryFirst<Blog>(sql, new { boxId, boxName, boxWeight });
         }
     }
 
-    public Box CreateBox(string boxName, double boxWeight)
+    public Blog CreateBox(string boxName, double boxWeight)
     {
         var sql = $@"
 INSERT INTO box_factory.boxes (boxname, boxweight) 
 VALUES (@boxName, @boxWeight)
-RETURNING boxid as {nameof(Box.BoxId)},
-       boxname as {nameof(Box.BoxName)},
+RETURNING boxid as {nameof(Blog.BoxId)},
+       boxname as {nameof(Blog.BoxName)},
        boxweight as {nameof(BoxFeedQuery.BoxWeight)}
         
 ";
         using (var conn = _dataSource.OpenConnection())
         {
-            return conn.QueryFirst<Box>(sql, new { boxName, boxWeight });
+            return conn.QueryFirst<Blog>(sql, new { boxName, boxWeight });
         }
     }
 
@@ -79,19 +79,24 @@ RETURNING boxid as {nameof(Box.BoxId)},
         }
     }
 
-    public async Task<Box> GetBoxByIdAsync(int boxId)
+    public async Task<Blog> GetBoxByIdAsync(int boxId)
     {
         string sql = $@"
-SELECT boxid as {nameof(Box.BoxId)},
-       boxname as {nameof(Box.BoxName)},
-       boxweight as {nameof(Box.BoxWeight)}
+SELECT boxid as {nameof(Blog.BoxId)},
+       boxname as {nameof(Blog.BoxName)},
+       boxweight as {nameof(Blog.BoxWeight)}
 FROM box_factory.boxes
 WHERE boxid = @boxId;
 ";
 
         using (var conn = _dataSource.OpenConnection())
         {
-            return await conn.QueryFirstOrDefaultAsync<Box>(sql, new { boxId });
+            return await conn.QueryFirstOrDefaultAsync<Blog>(sql, new { boxId });
         }
+    }
+
+    public IEnumerable<BoxFeedQuery> GetBlogForFeed()
+    {
+        throw new NotImplementedException();
     }
 }

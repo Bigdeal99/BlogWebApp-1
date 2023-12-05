@@ -1,103 +1,170 @@
-using System.ComponentModel.DataAnnotations;
-using api.CustomDataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using api.Filters;
 using api.TransferModels;
-using infrastructure.Repositories;
-using Microsoft.AspNetCore.Mvc;
+using infrastructure.DataModels; 
 using service;
 
-namespace library.Controllers;
-
-
-public class BlogController : ControllerBase
+namespace library.Controllers
 {
-
-    private readonly ILogger<BlogController> _logger;
-    private readonly BoxService _boxService;
-
-    public BlogController(ILogger<BlogController> logger,
-        BoxService boxService)
+    [Route("api/blog")]
+    public class BlogController : ControllerBase
     {
-        _logger = logger;
-        _boxService = boxService;
-    }
+        private readonly ILogger<BlogController> _logger;
+        private readonly BlogService _blogService;
 
-
-
-    [HttpGet]
-    [Route("/api/box")]
-    public ResponseDto Get()
-    {
-        HttpContext.Response.StatusCode = 200;
-        return new ResponseDto()
+        public BlogController(ILogger<BlogController> logger, BlogService blogService)
         {
-            MessageToClient = "Successfully fetched",
-            ResponseData = _boxService.GetBoxForFeed()
-        };
-    }
-    [HttpGet]
-    [Route("/api/boxes/{boxId}")]
-    public async Task<ResponseDto> GetAllBoxByIdAsync([FromRoute] int boxId)
-    {
-        var box = await _boxService.GetBoxByIdAsync(boxId);
-    
-        if (box == null)
-        {
-            HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            return new ResponseDto()
-            {
-                MessageToClient = "Box not found"
-            };
+            _logger = logger;
+            _blogService = blogService;
         }
 
-        return new ResponseDto()
+        [HttpGet]
+        public ActionResult<ResponseDto> Get()
         {
-            MessageToClient = "Successfully fetched box",
-            ResponseData = box
-        };
-    }
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully fetched",
+                ResponseData = _blogService.GetBlogForFeed()
+            });
+        }
 
-
-    [HttpPost]
-    [ValidateModel]
-    [Route("/api/box")]
-    public ResponseDto Post([FromBody] CreateBoxRequestDto dto)
-    {
-        HttpContext.Response.StatusCode = StatusCodes.Status201Created;
-        return new ResponseDto()
+        [HttpGet("{blogId}")]
+        public async Task<ActionResult<ResponseDto>> GetAllBlogByIdAsync([FromRoute] int blogId)
         {
-            MessageToClient = "Successfully created a box",
-            ResponseData = _boxService.CreateBox(dto.BoxName, dto.BoxWeight)
-        };
-    }
+            var blog = await _blogService.GetBlogByIdAsync(blogId);
 
-    [HttpPut]
-    [ValidateModel]
-    [Route("/api/box/{boxId}")]
-    public ResponseDto Put([FromRoute] int boxId,
-        [FromBody] UpdateBoxRequestDto dto)
-    {
-        HttpContext.Response.StatusCode = 201;
-        return new ResponseDto()
+            if (blog == null)
+            {
+                return NotFound(new ResponseDto { MessageToClient = "Blog not found" });
+            }
+
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully fetched blog",
+                ResponseData = blog
+            });
+        }
+
+        [HttpPost]
+        [ValidateModel]
+        public ActionResult<ResponseDto> Post([FromBody] CreateBlogRequestDto dto)
         {
-            MessageToClient = "Successfully updated",
-            ResponseData =
-                _boxService.UpdateBox(boxId, dto.BoxName, dto.BoxWeight)
-        };
+            return StatusCode(StatusCodes.Status201Created, new ResponseDto
+            {
+                MessageToClient = "Successfully created a blog",
+                ResponseData = _blogService.CreateBlog(dto.BlogTitle, dto.BlogContent)
+            });
+        }
 
-    } 
-
-    [HttpDelete]
-    [Route("/api/box/{boxId}")]
-    public ResponseDto Delete([FromRoute] int boxId)
-    {
-        _boxService.DeleteBox(boxId);
-        return new ResponseDto()
+        [HttpPut("{blogId}")]
+        [ValidateModel]
+        public ActionResult<ResponseDto> Put([FromRoute] int blogId, [FromBody] UpdateBlogRequestDto dto)
         {
-            MessageToClient = "Succesfully deleted"
-        };
+            var updatedBlog = _blogService.UpdateBlog(blogId, dto.BlogTitle, dto.BlogContent);
+
+            if (updatedBlog == null)
+            {
+                return NotFound(new ResponseDto { MessageToClient = "Blog not found" });
+            }
+
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully updated",
+                ResponseData = updatedBlog
+            });
+        }
+
+
+        [HttpDelete("{blogId}")]
+        public ActionResult<ResponseDto> Delete([FromRoute] int blogId)
+        {
+            _blogService.DeleteBlog(blogId);
+            return Ok(new ResponseDto { MessageToClient = "Successfully deleted" });
+        }
+
+        [HttpGet("categories")]
+        public IActionResult GetCategories()
+        {
+            var categories = _blogService.GetCategories();
+
+            if (categories == null || !categories.Any())
+            {
+                return NotFound(new ResponseDto { MessageToClient = "No blog categories found" });
+            }
+
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully retrieved blog categories",
+                ResponseData = categories
+            });
+        }
+
+
+        [HttpGet("category/{categoryId}")]
+        public IActionResult GetPostsByCategory(int categoryId)
+        {
+            var posts = _blogService.GetPostsByCategory(categoryId);
+
+            if (posts == null || !posts.Any())
+            {
+                return NotFound(new ResponseDto { MessageToClient = "No blog posts found for the specified category" });
+            }
+
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully retrieved blog posts by category",
+                ResponseData = posts
+            });
+        }
+
+
+        [HttpPost("comment")]
+        public IActionResult PostComment([FromBody] CommentDto commentDto)
+        {
+            var createdComment = _blogService.CreateComment(commentDto.CommenterName, commentDto.Email, commentDto.Text);
+
+            return CreatedAtAction("PostComment", new ResponseDto
+            {
+                MessageToClient = "Successfully created a comment",
+                ResponseData = createdComment
+            });
+        }
+
+
+        [HttpGet("search")]
+        public IActionResult SearchBlogPosts([FromQuery] string query)
+        {
+            var searchResults = _blogService.SearchBlogPosts(query);
+
+            if (searchResults == null || !searchResults.Any())
+            {
+                return NotFound(new ResponseDto { MessageToClient = "No blog posts found for the specified query" });
+            }
+
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully retrieved search results",
+                ResponseData = searchResults
+            });
+        }
+
+
+        [HttpGet("about")]
+        public IActionResult GetAboutPage()
+        {
+            var aboutInfo = _blogService.GetAboutPageInfo();
+
+            return Ok(new ResponseDto
+            {
+                MessageToClient = "Successfully retrieved information about the blog",
+                ResponseData = aboutInfo
+            });
+        }
 
     }
 }
-
-
