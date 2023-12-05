@@ -1,68 +1,142 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using infrastructure.DataModels;
 using infrastructure.QueryModels;
 using infrastructure.Repositories;
-namespace service;
 
-public class BlogService
+namespace service
 {
-    private readonly BlogRepository _blogRepository;
-    
-    public BlogService(BlogRepository blogRepository)
+    public class BlogService
     {
-        _blogRepository = blogRepository;
-    }
-    public IEnumerable<BoxFeedQuery> GetBlogForFeed()
-    {
-        return _blogRepository.GetBlogForFeed();
-    }
+        private readonly BlogRepository _blogRepository;
 
-    public void DeleteBlog(int blogId)
-    {
-        throw new NotImplementedException();
-    }
+        public BlogService(BlogRepository blogRepository)
+        {
+            _blogRepository = blogRepository;
+        }
 
-    public object? UpdateBlog(int blogId, object blogTitle, object blogContent)
-    {
-        throw new NotImplementedException();
-    }
+        public IEnumerable<BoxFeedQuery> GetBlogForFeed()
+        {
+            return _blogRepository.GetBlogForFeed();
+        }
 
-  
+        public void DeleteBlog(int blogId)
+        {
+            var result = _blogRepository.DeleteBlog(blogId);
 
-    public async Task<object?> GetBlogByIdAsync(int blogId)
-    {
-        throw new NotImplementedException();
-    }
+            if (!result)
+            {
+                throw new Exception("Could not delete blog");
+            }
+        }
 
 
-    public object? CreateComment(string commentDtoCommenterName, string commentDtoEmail, string commentDtoText)
-    {
-        throw new NotImplementedException();
-    }
+        public Blog UpdateBlog(int blogId, string blogTitle, string blogContent)
+        {
+            // Implement blog update logic
+            var updatedBlog = _blogRepository.GetBlogById(blogId);
 
-    public object? GetPostsByCategory(int categoryId)
-    {
-        throw new NotImplementedException();
-    }
+            if (updatedBlog != null)
+            {
+                updatedBlog.BlogTitle = blogTitle;
+                updatedBlog.BlogContent = blogContent;
 
-    public object? SearchBlogPosts(string query)
-    {
-        throw new NotImplementedException();
-    }
+                _blogRepository.UpdateBlog(updatedBlog);
+            }
 
-    public object? GetAboutPageInfo()
-    {
-        throw new NotImplementedException();
-    }
+            return updatedBlog;
+        }
 
-    public object? GetCategories()
-    {
-        throw new NotImplementedException();
-    }
+        public async Task<Blog> GetBlogByIdAsync(int blogId)
+        {
+            // Implement asynchronous blog retrieval logic
+            return await _blogRepository.GetBlogByIdAsync(blogId);
+        }
 
-    public object? CreateBlog(object blogTitle, object blogContent)
-    {
-        throw new NotImplementedException();
+        public Comment CreateComment(string commenterName, string email, string text)
+        {
+            // Implement comment creation logic
+            var newComment = new Comment
+            {
+                CommenterName = commenterName,
+                Email = email,
+                Text = text,
+                PublicationDate = DateTime.UtcNow // Assuming the current date/time for demonstration
+            };
+
+            _blogRepository.CreateComment(newComment);
+
+            return newComment;
+        }
+
+        public IEnumerable<Blog> GetPostsByCategory(int categoryId)
+        {
+            // Assuming _blogRepository.GetPostsByCategory returns a collection of blog posts
+            var posts = _blogRepository.GetPostsByCategory(categoryId);
+
+            if (posts == null || !posts.Any())
+            {
+                // Optionally, you can throw an exception, log, or return an empty list based on your requirements
+                return Enumerable.Empty<Blog>();
+            }
+
+            return posts;
+        }
+
+
+        public IEnumerable<Blog> SearchBlogPosts(string query)
+        {
+            // Assuming _blogRepository.SearchBlogPosts returns a collection of blog posts matching the search query
+            var searchResults = _blogRepository.SearchBlogPosts(query);
+
+            if (searchResults == null || !searchResults.Any())
+            {
+                // Optionally, you can throw an exception, log, or return an empty list based on your requirements
+                return Enumerable.Empty<Blog>();
+            }
+
+            return searchResults;
+        }
+
+
+        public object? GetAboutPageInfo()
+        {
+            // Implement logic to retrieve information for the about page
+            return _blogRepository.GetAboutPageInfo();
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            // Assuming _blogRepository.GetCategories returns a collection of blog categories
+            var categories = _blogRepository.GetCategories();
+
+            if (categories == null || !categories.Any())
+            {
+                // Optionally, you can throw an exception, log, or return an empty list based on your requirements
+                return Enumerable.Empty<Category>();
+            }
+
+            return categories;
+        }
+
+
+        public Blog CreateBlog(string blogTitle, string blogContent)
+        {
+            // Assuming _blogRepository.CreateBlog returns the created blog
+            var newBlog = new Blog
+            {
+                BlogTitle = blogTitle,
+                BlogContent = blogContent,
+                BlogPublicationDate = DateTime.UtcNow,
+                BlogCategories = new List<string>(), 
+                BlogComments = new List<Comment>()   
+            };
+
+            _blogRepository.CreateBlog(newBlog);
+
+            return newBlog;
+        }
+
     }
 }

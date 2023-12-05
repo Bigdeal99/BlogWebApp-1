@@ -54,12 +54,27 @@ namespace library.Controllers
         [ValidateModel]
         public ActionResult<ResponseDto> Post([FromBody] CreateBlogRequestDto dto)
         {
-            return StatusCode(StatusCodes.Status201Created, new ResponseDto
+            try
             {
-                MessageToClient = "Successfully created a blog",
-                ResponseData = _blogService.CreateBlog(dto.BlogTitle, dto.BlogContent)
-            });
+                var createdBlog = _blogService.CreateBlog(dto.BlogTitle, dto.BlogContent);
+
+
+                return StatusCode(StatusCodes.Status201Created, new ResponseDto
+                {
+                    MessageToClient = "Successfully created a blog",
+                    ResponseData = createdBlog
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto
+                {
+                    MessageToClient = "Failed to create a blog",
+                    ResponseData = ex.Message
+                });
+            }
         }
+
 
         [HttpPut("{blogId}")]
         [ValidateModel]
@@ -157,7 +172,7 @@ namespace library.Controllers
         [HttpGet("about")]
         public IActionResult GetAboutPage()
         {
-            var aboutInfo = _blogService.GetAboutPageInfo();
+            object? aboutInfo = _blogService.GetAboutPageInfo();
 
             return Ok(new ResponseDto
             {

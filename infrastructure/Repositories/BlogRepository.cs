@@ -1,102 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Threading.Tasks;
 using Dapper;
-using infrastructure.DataModels;
+using infrastructure.DataModels; // Ensure that Category is imported from the correct namespace
 using infrastructure.QueryModels;
 using Npgsql;
 
-namespace infrastructure.Repositories;
-
-public class BlogRepository
+namespace infrastructure.Repositories
 {
-    private NpgsqlDataSource _dataSource;
-
-    public BlogRepository(NpgsqlDataSource datasource)
+    public class BlogRepository
     {
-        _dataSource = datasource;
-    }
+        private readonly IDbConnection _dbConnection;
 
-    public IEnumerable<BoxFeedQuery> GetBoxForFeed()
-    {
-        string sql = $@"
-SELECT boxid as {nameof(BoxFeedQuery.BoxId)},
-       boxname as {nameof(BoxFeedQuery.BoxName)},
-       boxweight as {nameof(BoxFeedQuery.BoxWeight)}
-FROM box_factory.boxes;
-";
-        using (var conn = _dataSource.OpenConnection())
+        public BlogRepository(NpgsqlDataSource dataSource)
         {
-            return conn.Query<BoxFeedQuery>(sql);
+            _dbConnection = new NpgsqlConnection(dataSource.ConnectionString);
+        }
+
+        public IEnumerable<BoxFeedQuery> GetBlogForFeed()
+        {
+            const string query = "SELECT * FROM YourBoxFeedQueryTable";
+            return _dbConnection.Query<BoxFeedQuery>(query);
+        }
+
+        public void DeleteBlog(int blogId)
+        {
+            const string query = "DELETE FROM Blogs WHERE BlogId = @BlogId";
+            _dbConnection.Execute(query, new { BlogId = blogId });
+        }
+
+        public Blog GetBlogById(int blogId)
+        {
+            const string query = "SELECT * FROM Blogs WHERE BlogId = @BlogId";
+            return _dbConnection.QuerySingleOrDefault<Blog>(query, new { BlogId = blogId });
+        }
+
+        public void UpdateBlog(Blog updatedBlog)
+        {
+            const string query = "UPDATE Blogs SET BlogTitle = @BlogTitle, BlogContent = @BlogContent WHERE BlogId = @BlogId";
+            _dbConnection.Execute(query, updatedBlog);
+        }
+
+        public async Task<Blog> GetBlogByIdAsync(int blogId)
+        {
+            const string query = "SELECT * FROM Blogs WHERE BlogId = @BlogId";
+            return await _dbConnection.QuerySingleOrDefaultAsync<Blog>(query, new { BlogId = blogId });
+        }
+
+        public void CreateComment(Comment newComment)
+        {
+            const string query = "INSERT INTO Comments (CommenterName, Email, Text, PublicationDate) VALUES (@CommenterName, @Email, @Text, @PublicationDate)";
+            _dbConnection.Execute(query, newComment);
+        }
+
+        public IEnumerable<Blog> GetPostsByCategory(int categoryId)
+        {
+            const string query = "SELECT * FROM Blogs WHERE CategoryId = @CategoryId";
+            return _dbConnection.Query<Blog>(query, new { CategoryId = categoryId });
+        }
+
+        public IEnumerable<Blog> SearchBlogPosts(string query)
+        {
+            string searchQuery = $"SELECT * FROM Blogs WHERE BlogTitle LIKE '%{query}%' OR BlogContent LIKE '%{query}%'";
+            return _dbConnection.Query<Blog>(searchQuery);
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            const string query = "SELECT * FROM Categories";
+            return _dbConnection.Query<Category>(query);
+        }
+
+        public void CreateBlog(Blog newBlog)
+        {
+            const string query = "INSERT INTO Blogs (BlogTitle, BlogContent, BlogPublicationDate) VALUES (@BlogTitle, @BlogContent, @BlogPublicationDate)";
+            _dbConnection.Execute(query, newBlog);
+        }
+
+        public object? GetAboutPageInfo()
+        {
+            // Your implementation for getting about page info, adjust as needed
+            throw new NotImplementedException();
         }
     }
 
-
-    public Blog UpdateBox(int boxId, string boxName, double boxWeight)
-    {
-        var sql = $@"
-UPDATE box_factory.boxes SET boxname = @boxName,boxweight = @boxWeight
-WHERE boxid = @boxId
-RETURNING boxid as {nameof(Blog.BoxId)},
-       boxname as {nameof(Blog.BoxName)},
-       boxweight as {nameof(BoxFeedQuery.BoxWeight)}
-";
-
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.QueryFirst<Blog>(sql, new { boxId, boxName, boxWeight });
-        }
-    }
-
-    public Blog CreateBox(string boxName, double boxWeight)
-    {
-        var sql = $@"
-INSERT INTO box_factory.boxes (boxname, boxweight) 
-VALUES (@boxName, @boxWeight)
-RETURNING boxid as {nameof(Blog.BoxId)},
-       boxname as {nameof(Blog.BoxName)},
-       boxweight as {nameof(BoxFeedQuery.BoxWeight)}
-        
-";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.QueryFirst<Blog>(sql, new { boxName, boxWeight });
-        }
-    }
-
-    public bool DeleteBox(int boxId)
-    {
-        var sql = @"DELETE FROM box_factory.boxes WHERE boxId = @boxId;";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.Execute(sql, new { boxId }) == 1;
-        }
-    }
-
-    public bool DoesBoxtWithNameExist(string boxName)
-    {
-        var sql = @"SELECT COUNT(*) FROM box_factory.boxes WHERE boxname = @boxName;";
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return conn.ExecuteScalar<int>(sql, new { boxName }) == 1;
-        }
-    }
-
-    public async Task<Blog> GetBoxByIdAsync(int boxId)
-    {
-        string sql = $@"
-SELECT boxid as {nameof(Blog.BoxId)},
-       boxname as {nameof(Blog.BoxName)},
-       boxweight as {nameof(Blog.BoxWeight)}
-FROM box_factory.boxes
-WHERE boxid = @boxId;
-";
-
-        using (var conn = _dataSource.OpenConnection())
-        {
-            return await conn.QueryFirstOrDefaultAsync<Blog>(sql, new { boxId });
-        }
-    }
-
-    public IEnumerable<BoxFeedQuery> GetBlogForFeed()
-    {
-        throw new NotImplementedException();
-    }
+    
 }

@@ -7,8 +7,8 @@ public class CreateBlogRequestDto
 {
     [Length(4,6)]
     [Required]
-    public string blogTitle { get; set; }
+    public string BlogTitle { get; set; }
     
     [Required]
-    public double blogContent { get; set; }
+    public string BlogContent { get; set; }
 }
