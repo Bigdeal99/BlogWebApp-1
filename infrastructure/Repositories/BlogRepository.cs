@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
-using infrastructure.DataModels; // Ensure that Category is imported from the correct namespace
+using infrastructure.DataModels; 
 using infrastructure.QueryModels;
 using Npgsql;
 

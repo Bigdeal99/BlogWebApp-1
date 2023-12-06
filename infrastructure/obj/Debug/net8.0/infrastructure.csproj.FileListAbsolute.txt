@@ -1,0 +1,6 @@
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.csproj.AssemblyReference.cache
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.AssemblyInfoInputs.cache
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.AssemblyInfo.cs
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.csproj.CoreCompileInputs.cache
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.sourcelink.json
