@@ -7,4 +7,6 @@ public class Comment
     public string Email { get; set; }
     public string Text { get; set; }
     public DateTime PublicationDate { get; set; }
+    public int BlogId { get; set; }
+    public Blog Blog { get; set; }
 }

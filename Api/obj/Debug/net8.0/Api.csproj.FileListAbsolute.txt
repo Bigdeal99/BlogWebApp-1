@@ -32,3 +32,17 @@
 /Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/obj/Debug/net8.0/Api.pdb
 /Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/obj/Debug/net8.0/Api.genruntimeconfig.cache
 /Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/obj/Debug/net8.0/ref/Api.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Dapper.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.AspNetCore.SpaServices.Extensions.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.Extensions.FileProviders.Physical.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.Extensions.FileSystemGlobbing.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Microsoft.Extensions.Primitives.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Npgsql.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/Npgsql.DependencyInjection.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/infrastructure.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/service.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/infrastructure.pdb
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/bin/Debug/net8.0/service.pdb

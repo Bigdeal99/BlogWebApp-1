@@ -8,4 +8,8 @@ public class Blog
     public DateTime BlogPublicationDate { get; set; } 
     public List<string> BlogCategories { get; set; } 
     public List<Comment> BlogComments { get; set; }
+    
+    public List<Category> Categories { get; set; } = new List<Category>();
+
+    public List<Comment> Comments { get; set; } = new List<Comment>();
 }

@@ -24,11 +24,22 @@ namespace infrastructure.Repositories
             return _dbConnection.Query<BoxFeedQuery>(query);
         }
 
-        public void DeleteBlog(int blogId)
+        public bool DeleteBlog(int blogId)
         {
             const string query = "DELETE FROM Blogs WHERE BlogId = @BlogId";
-            _dbConnection.Execute(query, new { BlogId = blogId });
+
+            try
+            {
+                _dbConnection.Execute(query, new { BlogId = blogId });
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to delete blog with ID {blogId}. {ex.Message}");
+            }
+
+            return false;
         }
+
 
         public Blog GetBlogById(int blogId)
         {

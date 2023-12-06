@@ -4,3 +4,10 @@
 /Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.AssemblyInfo.cs
 /Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.csproj.CoreCompileInputs.cache
 /Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.sourcelink.json
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/bin/Debug/net8.0/infrastructure.deps.json
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/bin/Debug/net8.0/infrastructure.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/bin/Debug/net8.0/infrastructure.pdb
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/refint/infrastructure.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/infrastructure.pdb
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/infrastructure/obj/Debug/net8.0/ref/infrastructure.dll
