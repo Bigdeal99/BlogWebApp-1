@@ -16,7 +16,7 @@ namespace service
             _blogRepository = blogRepository;
         }
 
-        public IEnumerable<BoxFeedQuery> GetBlogForFeed()
+        public IEnumerable<BlogFeedQuery> GetBlogForFeed()
         {
             return _blogRepository.GetBlogForFeed();
         }

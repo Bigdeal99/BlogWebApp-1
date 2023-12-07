@@ -16,7 +16,8 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "pgconn":"postgres://xcrodyuh:rJW7CjW_ZK2QZmmytSl0YNSsZG2PMyVA@snuffleupagus.db.elephantsql.com/xcrodyuh"
       }
     },
     "https": {

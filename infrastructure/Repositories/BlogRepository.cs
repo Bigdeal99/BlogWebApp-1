@@ -17,11 +17,25 @@ namespace infrastructure.Repositories
         {
             _dbConnection = new NpgsqlConnection(dataSource.ConnectionString);
         }
-
-        public IEnumerable<BoxFeedQuery> GetBlogForFeed()
+        public async Task<Admin> GetAdminByUsernameAsync(string username)
         {
-            const string query = "SELECT * FROM YourBoxFeedQueryTable";
-            return _dbConnection.Query<BoxFeedQuery>(query);
+            return null;
+        }
+        public async Task UpdateAdminAsync(Admin admin)
+        {
+            // Implement logic to update admin in the database
+        }
+        public IEnumerable<BlogFeedQuery> GetBlogForFeed()
+        {
+            const string query = "SELECT * " +
+                                 "FROM blog_schema.blogs b " +
+                                 "JOIN blog_schema.blogscomments bc " +
+                                 "ON b.blogid = bc.blogid " +
+                                 "JOIN blog_schema.comments c " +
+                                 "ON bc.commentid = c.commentid";
+            
+            var result = _dbConnection.Query<BlogFeedQuery>(query);
+            return result;
         }
 
         public bool DeleteBlog(int blogId)
