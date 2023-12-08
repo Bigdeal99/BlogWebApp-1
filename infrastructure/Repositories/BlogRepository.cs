@@ -7,6 +7,7 @@ using infrastructure.DataModels;
 using infrastructure.QueryModels;
 using Npgsql;
 
+
 namespace infrastructure.Repositories
 {
     public class BlogRepository
@@ -60,6 +61,7 @@ namespace infrastructure.Repositories
             const string query = "SELECT * FROM Blogs WHERE BlogId = @BlogId";
             return _dbConnection.QuerySingleOrDefault<Blog>(query, new { BlogId = blogId });
         }
+        
 
         public void UpdateBlog(Blog updatedBlog)
         {
@@ -73,11 +75,12 @@ namespace infrastructure.Repositories
             return await _dbConnection.QuerySingleOrDefaultAsync<Blog>(query, new { BlogId = blogId });
         }
 
-        public void CreateComment(Comment newComment)
+        public async Task CreateCommentAsync(Comment newComment)
         {
             const string query = "INSERT INTO Comments (CommenterName, Email, Text, PublicationDate) VALUES (@CommenterName, @Email, @Text, @PublicationDate)";
-            _dbConnection.Execute(query, newComment);
+            await _dbConnection.ExecuteAsync(query, newComment);
         }
+
 
         public IEnumerable<Blog> GetPostsByCategory(int categoryId)
         {
@@ -86,9 +89,11 @@ namespace infrastructure.Repositories
         }
 
         public IEnumerable<Blog> SearchBlogPosts(string query)
+            
         {
-            string searchQuery = $"SELECT * FROM Blogs WHERE BlogTitle LIKE '%{query}%' OR BlogContent LIKE '%{query}%'";
-            return _dbConnection.Query<Blog>(searchQuery);
+            string searchQuery = "SELECT * FROM Blogs WHERE BlogTitle LIKE @Query OR BlogContent LIKE @Query";
+            return _dbConnection.Query<Blog>(searchQuery, new { Query = $"%{query}%" });
+
         }
 
         public IEnumerable<Category> GetCategories()

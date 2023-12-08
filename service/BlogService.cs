@@ -38,13 +38,11 @@ namespace service
             // Implement blog update logic
             var updatedBlog = _blogRepository.GetBlogById(blogId);
 
-            if (updatedBlog != null)
+            if (string.IsNullOrWhiteSpace(blogTitle) || string.IsNullOrWhiteSpace(blogContent))
             {
-                updatedBlog.BlogTitle = blogTitle;
-                updatedBlog.BlogContent = blogContent;
-
-                _blogRepository.UpdateBlog(updatedBlog);
+                throw new ArgumentException("Blog title and content cannot be empty.");
             }
+
 
             return updatedBlog;
         }
@@ -52,24 +50,25 @@ namespace service
         public async Task<Blog> GetBlogByIdAsync(int blogId)
         {
             // Implement asynchronous blog retrieval logic
+            
             return await _blogRepository.GetBlogByIdAsync(blogId);
         }
 
-        public Comment CreateComment(string commenterName, string email, string text)
+        public async Task<Comment> CreateCommentAsync(string commenterName, string email, string text)
         {
-            // Implement comment creation logic
             var newComment = new Comment
             {
                 CommenterName = commenterName,
                 Email = email,
                 Text = text,
-                PublicationDate = DateTime.UtcNow // Assuming the current date/time for demonstration
+                PublicationDate = DateTime.UtcNow
             };
 
-            _blogRepository.CreateComment(newComment);
+            await _blogRepository.CreateCommentAsync(newComment);
 
             return newComment;
         }
+
 
         public IEnumerable<Blog> GetPostsByCategory(int categoryId)
         {
@@ -104,6 +103,7 @@ namespace service
         public object? GetAboutPageInfo()
         {
             // Implement logic to retrieve information for the about page
+            
             return _blogRepository.GetAboutPageInfo();
         }
 

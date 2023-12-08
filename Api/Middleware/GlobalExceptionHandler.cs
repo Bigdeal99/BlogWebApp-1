@@ -14,7 +14,7 @@ public class GlobalExceptionHandler
         ILogger<GlobalExceptionHandler> logger,
         RequestDelegate next)
     {
-        _logger = logger;
+        _logger = logger; 
         _next = next;
     }
 

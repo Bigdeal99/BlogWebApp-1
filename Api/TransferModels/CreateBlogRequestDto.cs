@@ -5,7 +5,7 @@ namespace api.TransferModels;
 
 public class CreateBlogRequestDto
 {
-    [Length(4,6)]
+    
     [Required]
     public string BlogTitle { get; set; }
     

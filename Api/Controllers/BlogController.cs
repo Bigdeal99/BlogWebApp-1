@@ -24,7 +24,7 @@ namespace library.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ResponseDto> Get()
+        public IActionResult Get()
         {
             return Ok(new ResponseDto
             {
@@ -34,7 +34,7 @@ namespace library.Controllers
         }
 
         [HttpGet("{blogId}")]
-        public async Task<ActionResult<ResponseDto>> GetAllBlogByIdAsync([FromRoute] int blogId)
+        public async Task<ActionResult<ResponseDto>> GetBlogByIdAsync([FromRoute] int blogId)
         {
             var blog = await _blogService.GetBlogByIdAsync(blogId);
 
@@ -141,9 +141,9 @@ namespace library.Controllers
         [HttpPost("comment")]
         public IActionResult PostComment([FromBody] CommentDto commentDto)
         {
-            var createdComment = _blogService.CreateComment(commentDto.CommenterName, commentDto.Email, commentDto.Text);
+            var createdComment = _blogService.CreateCommentAsync(commentDto.CommenterName, commentDto.Email, commentDto.Text);
 
-            return CreatedAtAction("PostComment", new ResponseDto
+            return CreatedAtAction(nameof(PostComment), new ResponseDto
             {
                 MessageToClient = "Successfully created a comment",
                 ResponseData = createdComment
