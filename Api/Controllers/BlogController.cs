@@ -109,7 +109,7 @@ namespace library.Controllers
 
             if (categories == null || !categories.Any())
             {
-                return NotFound(new ResponseDto { MessageToClient = "No blog categories found" });
+                return Ok(new ResponseDto { MessageToClient = "No blog categories found", ResponseData = Enumerable.Empty<Category>() });
             }
 
             return Ok(new ResponseDto
@@ -139,9 +139,9 @@ namespace library.Controllers
 
 
         [HttpPost("comment")]
-        public IActionResult PostComment([FromBody] CommentDto commentDto)
+        public async Task<IActionResult> PostComment([FromBody] CommentDto commentDto)
         {
-            var createdComment = _blogService.CreateCommentAsync(commentDto.CommenterName, commentDto.Email, commentDto.Text);
+            var createdComment = await _blogService.CreateCommentAsync(commentDto.CommenterName, commentDto.Email, commentDto.Text);
 
             return CreatedAtAction(nameof(PostComment), new ResponseDto
             {
@@ -149,6 +149,7 @@ namespace library.Controllers
                 ResponseData = createdComment
             });
         }
+
 
 
         [HttpGet("search")]
@@ -180,6 +181,8 @@ namespace library.Controllers
                 ResponseData = aboutInfo
             });
         }
+
+
 
     }
 }
