@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Hjf5keQebdvI9ZJmKrq05dQ0FlnU++I+73YJHSY2wtd7TdiB2Xoebiugjz6g7xszCr3k+44RHM+FT4VYyeyQuA==",
+  "dgSpecHash": "8dUimR8XJZ6+TarMOerkzxOx3YTZpNh9pYi/l1dwGyEZRS6iD7bXL1TKDyNJ8HylBA745uADTavpdgHTwtY31w==",
   "success": true,
   "projectFilePath": "/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/Api/Api.csproj",
   "expectedPackageFiles": [
@@ -17,10 +17,10 @@
     "/Users/marcelohani/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/Users/marcelohani/.nuget/packages/npgsql/8.0.0/npgsql.8.0.0.nupkg.sha512",
     "/Users/marcelohani/.nuget/packages/npgsql.dependencyinjection/8.0.0/npgsql.dependencyinjection.8.0.0.nupkg.sha512",
-    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
-    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
-    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
-    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/Users/marcelohani/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
   ],
   "logs": []
 }

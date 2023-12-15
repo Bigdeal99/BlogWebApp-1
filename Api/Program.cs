@@ -5,6 +5,13 @@ using service;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Retrieve and validate the connection string
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Database connection string is not configured.");
+}
+
 // Add services to the container.
 if (builder.Environment.IsDevelopment())
 {
@@ -17,23 +24,21 @@ if (builder.Environment.IsProduction())
     builder.Services.AddNpgsqlDataSource(Utilities.ProperlyFormattedConnectionString);
 }
 
+// Register BlogRepository with the connection string
+builder.Services.AddSingleton<BlogRepository>(provider => new BlogRepository(connectionString));
 
-builder.Services.AddSingleton<BlogRepository>();
 builder.Services.AddSingleton<BlogService>();
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//var frontEndRelativePath = "./../frontend/www";
-//builder.Services.AddSpaStaticFiles(conf => conf.RootPath = frontEndRelativePath);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "blog"));
 }
 
 app.UseCors(options =>
@@ -43,9 +48,6 @@ app.UseCors(options =>
         .AllowAnyHeader()
         .AllowCredentials();
 });
-
-//app.UseSpaStaticFiles();
-
 
 app.MapControllers();
 app.UseMiddleware<GlobalExceptionHandler>();

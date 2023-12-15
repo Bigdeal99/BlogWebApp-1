@@ -1,12 +1,12 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using api.Filters;
 using api.TransferModels;
-using infrastructure.DataModels; 
+using infrastructure.DataModels;
 using service;
 
 namespace library.Controllers
@@ -24,165 +24,134 @@ namespace library.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(new ResponseDto
+            try
             {
-                MessageToClient = "Successfully fetched",
-                ResponseData = _blogService.GetBlogForFeed()
-            });
+                var blogs = await _blogService.GetBlogForFeedAsync();
+                return Ok(new ResponseDto { MessageToClient = "Successfully fetched", ResponseData = blogs });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching blogs");
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { MessageToClient = "An error occurred while fetching blogs" });
+            }
         }
 
         [HttpGet("{blogId}")]
         public async Task<ActionResult<ResponseDto>> GetBlogByIdAsync([FromRoute] int blogId)
         {
-            var blog = await _blogService.GetBlogByIdAsync(blogId);
-
-            if (blog == null)
+            try
             {
-                return NotFound(new ResponseDto { MessageToClient = "Blog not found" });
+                var blog = await _blogService.GetBlogByIdAsync(blogId);
+
+                if (blog == null)
+                {
+                    return NotFound(new ResponseDto { MessageToClient = "Blog not found" });
+                }
+
+                return Ok(new ResponseDto { MessageToClient = "Successfully fetched blog", ResponseData = blog });
             }
-
-            return Ok(new ResponseDto
+            catch (Exception ex)
             {
-                MessageToClient = "Successfully fetched blog",
-                ResponseData = blog
-            });
+                _logger.LogError(ex, "Error retrieving blog with ID {BlogId}", blogId);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { MessageToClient = "An error occurred while retrieving the blog", ResponseData = ex.Message });
+            }
         }
 
         [HttpPost]
         [ValidateModel]
-        public ActionResult<ResponseDto> Post([FromBody] CreateBlogRequestDto dto)
+        public async Task<ActionResult<ResponseDto>> Post([FromBody] CreateBlogRequestDto dto)
         {
             try
             {
-                var createdBlog = _blogService.CreateBlog(dto.BlogTitle, dto.BlogContent);
-
-
-                return StatusCode(StatusCodes.Status201Created, new ResponseDto
-                {
-                    MessageToClient = "Successfully created a blog",
-                    ResponseData = createdBlog
-                });
+                var createdBlog = await _blogService.CreateBlogAsync(dto.BlogTitle, dto.BlogContent);
+                return StatusCode(StatusCodes.Status201Created, new ResponseDto { MessageToClient = "Successfully created a blog", ResponseData = createdBlog });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto
-                {
-                    MessageToClient = "Failed to create a blog",
-                    ResponseData = ex.Message
-                });
+                _logger.LogError(ex, "Error creating blog");
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { MessageToClient = "Failed to create a blog", ResponseData = ex.Message });
             }
         }
-
 
         [HttpPut("{blogId}")]
         [ValidateModel]
-        public ActionResult<ResponseDto> Put([FromRoute] int blogId, [FromBody] UpdateBlogRequestDto dto)
+        public async Task<ActionResult<ResponseDto>> Put([FromRoute] int blogId, [FromBody] UpdateBlogRequestDto dto)
         {
-            var updatedBlog = _blogService.UpdateBlog(blogId, dto.BlogTitle, dto.BlogContent);
-
-            if (updatedBlog == null)
+            try
             {
-                return NotFound(new ResponseDto { MessageToClient = "Blog not found" });
+                var updatedBlog = await _blogService.UpdateBlogAsync(blogId, dto.BlogTitle, dto.BlogContent);
+                return Ok(new ResponseDto { MessageToClient = "Successfully updated", ResponseData = updatedBlog });
             }
-
-            return Ok(new ResponseDto
+            catch (KeyNotFoundException ex)
             {
-                MessageToClient = "Successfully updated",
-                ResponseData = updatedBlog
-            });
+                return NotFound(new ResponseDto { MessageToClient = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating blog with ID {BlogId}", blogId);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { MessageToClient = "Failed to update blog", ResponseData = ex.Message });
+            }
         }
 
-
         [HttpDelete("{blogId}")]
-        public ActionResult<ResponseDto> Delete([FromRoute] int blogId)
+        public async Task<IActionResult> Delete([FromRoute] int blogId)
         {
-            _blogService.DeleteBlog(blogId);
-            return Ok(new ResponseDto { MessageToClient = "Successfully deleted" });
+            try
+            {
+                await _blogService.DeleteBlogAsync(blogId);
+                return Ok(new ResponseDto { MessageToClient = "Successfully deleted" });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting blog with ID {BlogId}", blogId);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { MessageToClient = "Failed to delete blog", ResponseData = ex.Message });
+            }
         }
 
         [HttpGet("categories")]
-        public IActionResult GetCategories()
+        public async Task<IActionResult> GetCategories()
         {
-            var categories = _blogService.GetCategories();
+            var categories = await _blogService.GetCategoriesAsync();
 
-            if (categories == null || !categories.Any())
-            {
-                return Ok(new ResponseDto { MessageToClient = "No blog categories found", ResponseData = Enumerable.Empty<Category>() });
-            }
-
-            return Ok(new ResponseDto
-            {
-                MessageToClient = "Successfully retrieved blog categories",
-                ResponseData = categories
-            });
+            return Ok(new ResponseDto { MessageToClient = "Successfully retrieved blog categories", ResponseData = categories });
         }
-
 
         [HttpGet("category/{categoryId}")]
-        public IActionResult GetPostsByCategory(int categoryId)
+        public async Task<IActionResult> GetPostsByCategory([FromRoute] int categoryId)
         {
-            var posts = _blogService.GetPostsByCategory(categoryId);
-
-            if (posts == null || !posts.Any())
-            {
-                return NotFound(new ResponseDto { MessageToClient = "No blog posts found for the specified category" });
-            }
-
-            return Ok(new ResponseDto
-            {
-                MessageToClient = "Successfully retrieved blog posts by category",
-                ResponseData = posts
-            });
+            var posts = await _blogService.GetPostsByCategoryAsync(categoryId);
+            return Ok(new ResponseDto { MessageToClient = "Successfully retrieved blog posts by category", ResponseData = posts });
         }
-
 
         [HttpPost("comment")]
-        public async Task<IActionResult> PostComment([FromBody] CommentDto commentDto)
+        public async Task<IActionResult> PostComment([FromBody] CommentDto commentDto, [FromQuery] int blogId)
         {
-            var createdComment = await _blogService.CreateCommentAsync(commentDto.CommenterName, commentDto.Email, commentDto.Text);
-
-            return CreatedAtAction(nameof(PostComment), new ResponseDto
+            try
             {
-                MessageToClient = "Successfully created a comment",
-                ResponseData = createdComment
-            });
+                var createdComment = await _blogService.CreateCommentAsync(commentDto.CommenterName, commentDto.Email, commentDto.Text, blogId);
+                return CreatedAtAction(nameof(PostComment), new ResponseDto { MessageToClient = "Successfully created a comment", ResponseData = createdComment });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating comment");
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseDto { MessageToClient = "Failed to create a comment", ResponseData = ex.Message });
+            }
         }
-
-
 
         [HttpGet("search")]
-        public IActionResult SearchBlogPosts([FromQuery] string query)
+        public async Task<IActionResult> SearchBlogPosts([FromQuery] string query)
         {
-            var searchResults = _blogService.SearchBlogPosts(query);
-
-            if (searchResults == null || !searchResults.Any())
-            {
-                return NotFound(new ResponseDto { MessageToClient = "No blog posts found for the specified query" });
-            }
-
-            return Ok(new ResponseDto
-            {
-                MessageToClient = "Successfully retrieved search results",
-                ResponseData = searchResults
-            });
+            var searchResults = await _blogService.SearchBlogPostsAsync(query);
+            return Ok(new ResponseDto { MessageToClient = "Successfully retrieved search results", ResponseData = searchResults });
         }
-
 
         [HttpGet("about")]
-        public IActionResult GetAboutPage()
+        public async Task<IActionResult> GetAboutPage()
         {
-            object? aboutInfo = _blogService.GetAboutPageInfo();
-
-            return Ok(new ResponseDto
-            {
-                MessageToClient = "Successfully retrieved information about the blog",
-                ResponseData = aboutInfo
-            });
+            var aboutInfo = await _blogService.GetAboutPageInfoAsync();
+            return Ok(new ResponseDto { MessageToClient = "Successfully retrieved information about the blog", ResponseData = aboutInfo });
         }
-
-
-
     }
 }

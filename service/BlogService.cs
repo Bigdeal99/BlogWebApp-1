@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using infrastructure.DataModels;
-using infrastructure.QueryModels;
 using infrastructure.Repositories;
 
 namespace service
@@ -16,45 +16,49 @@ namespace service
             _blogRepository = blogRepository;
         }
 
-        public IEnumerable<BlogFeedQuery> GetBlogForFeed()
+        public async Task<IEnumerable<Blog>> GetBlogForFeedAsync()
         {
-            return _blogRepository.GetBlogForFeed();
+            // Adjust the repository method to be async
+            return await _blogRepository.GetBlogsForFeedAsync();
         }
 
-        public void DeleteBlog(int blogId)
+        public async Task<bool> DeleteBlogAsync(int blogId)
         {
-            var result = _blogRepository.DeleteBlog(blogId);
+            return await _blogRepository.DeleteBlogAsync(blogId);
+        }
 
-            if (!result)
+        public async Task<Blog> UpdateBlogAsync(int blogId, string blogTitle, string blogContent)
+        {
+            var blog = await _blogRepository.GetBlogByIdAsync(blogId);
+            if (blog == null)
             {
-                throw new Exception("Could not delete blog");
+                throw new KeyNotFoundException($"No blog found with ID {blogId}");
             }
-        }
-
-
-
-        public Blog UpdateBlog(int blogId, string blogTitle, string blogContent)
-        {
-            // Implement blog update logic
-            var updatedBlog = _blogRepository.GetBlogById(blogId);
 
             if (string.IsNullOrWhiteSpace(blogTitle) || string.IsNullOrWhiteSpace(blogContent))
             {
                 throw new ArgumentException("Blog title and content cannot be empty.");
             }
 
+            blog.BlogTitle = blogTitle;
+            blog.BlogContent = blogContent;
 
-            return updatedBlog;
+            // The repository method should return a boolean indicating success or failure
+            var success = await _blogRepository.UpdateBlogAsync(blog);
+            if (!success)
+            {
+                throw new Exception("Unable to update blog post.");
+            }
+
+            return blog;
         }
 
         public async Task<Blog> GetBlogByIdAsync(int blogId)
         {
-            // Implement asynchronous blog retrieval logic
-            
             return await _blogRepository.GetBlogByIdAsync(blogId);
         }
 
-        public async Task<Comment> CreateCommentAsync(string commenterName, string email, string text)
+        public async Task<Comment> CreateCommentAsync(string commenterName, string email, string text, int blogId)
         {
             var newComment = new Comment
             {
@@ -64,80 +68,49 @@ namespace service
                 PublicationDate = DateTime.UtcNow
             };
 
-            await _blogRepository.CreateCommentAsync(newComment);
+            // Assuming that CreateCommentAsync now returns the ID of the created comment
+            var commentId = await _blogRepository.CreateCommentAsync(newComment, blogId);
+            newComment.Id = commentId;
 
             return newComment;
         }
 
 
-        public IEnumerable<Blog> GetPostsByCategory(int categoryId)
+        public async Task<IEnumerable<Blog>> GetPostsByCategoryAsync(int categoryId)
         {
-            // Assuming _blogRepository.GetPostsByCategory returns a collection of blog posts
-            var posts = _blogRepository.GetPostsByCategory(categoryId);
-
-            if (posts == null || !posts.Any())
-            {
-                // Optionally, you can throw an exception, log, or return an empty list based on your requirements
-                return Enumerable.Empty<Blog>();
-            }
-
-            return posts;
+            return await _blogRepository.GetPostsByCategoryAsync(categoryId);
         }
 
-
-        public IEnumerable<Blog> SearchBlogPosts(string query)
+        public async Task<IEnumerable<Blog>> SearchBlogPostsAsync(string searchTerm)
         {
-            // Assuming _blogRepository.SearchBlogPosts returns a collection of blog posts matching the search query
-            var searchResults = _blogRepository.SearchBlogPosts(query);
-
-            if (searchResults == null || !searchResults.Any())
-            {
-                // Optionally, you can throw an exception, log, or return an empty list based on your requirements
-                return Enumerable.Empty<Blog>();
-            }
-
-            return searchResults;
+            return await _blogRepository.SearchBlogPostsAsync(searchTerm);
         }
 
-
-        public object? GetAboutPageInfo()
+        public async Task<object> GetAboutPageInfoAsync()
         {
-            // Implement logic to retrieve information for the about page
-            
-            return _blogRepository.GetAboutPageInfo();
+            return await _blogRepository.GetAboutPageInfoAsync();
         }
 
-        public IEnumerable<Category> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
         {
-            // Assuming _blogRepository.GetCategories returns a collection of blog categories
-            var categories = _blogRepository.GetCategories();
-
-            if (categories == null || !categories.Any())
-            {
-                // Optionally, you can throw an exception, log, or return an empty list based on your requirements
-                return Enumerable.Empty<Category>();
-            }
-
-            return categories;
+            return await _blogRepository.GetCategoriesAsync();
         }
 
-
-        public Blog CreateBlog(string blogTitle, string blogContent)
+        public async Task<Blog> CreateBlogAsync(string blogTitle, string blogContent)
         {
-            // Assuming _blogRepository.CreateBlog returns the created blog
             var newBlog = new Blog
             {
                 BlogTitle = blogTitle,
                 BlogContent = blogContent,
-                BlogPublicationDate = DateTime.UtcNow,
-                BlogCategories = new List<string>(), 
-                BlogComments = new List<Comment>()   
+                BlogPublicationDate = DateTime.UtcNow
+                // Categories and Comments are typically added separately, so they might start empty
             };
 
-            _blogRepository.CreateBlog(newBlog);
+            // Assuming that CreateBlogAsync now returns the ID of the created blog
+            var blogId = await _blogRepository.CreateBlogAsync(newBlog);
+            newBlog.BlogId = blogId;
 
             return newBlog;
         }
-
     }
 }
