@@ -47,7 +47,7 @@ namespace library.Controllers
 
                 if (blog == null)
                 {
-                    return NotFound(new ResponseDto { MessageToClient = "Blog not found" });
+                    return NotFound(new ResponseDto { MessageToClient = "BlogPost not found" });
                 }
 
                 return Ok(new ResponseDto { MessageToClient = "Successfully fetched blog", ResponseData = blog });

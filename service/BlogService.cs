@@ -16,7 +16,7 @@ namespace service
             _blogRepository = blogRepository;
         }
 
-        public async Task<IEnumerable<Blog>> GetBlogForFeedAsync()
+        public async Task<IEnumerable<BlogPost>> GetBlogForFeedAsync()
         {
             // Adjust the repository method to be async
             return await _blogRepository.GetBlogsForFeedAsync();
@@ -27,7 +27,7 @@ namespace service
             return await _blogRepository.DeleteBlogAsync(blogId);
         }
 
-        public async Task<Blog> UpdateBlogAsync(int blogId, string blogTitle, string blogContent)
+        public async Task<BlogPost> UpdateBlogAsync(int blogId, string blogTitle, string blogContent)
         {
             var blog = await _blogRepository.GetBlogByIdAsync(blogId);
             if (blog == null)
@@ -37,7 +37,7 @@ namespace service
 
             if (string.IsNullOrWhiteSpace(blogTitle) || string.IsNullOrWhiteSpace(blogContent))
             {
-                throw new ArgumentException("Blog title and content cannot be empty.");
+                throw new ArgumentException("BlogPost title and content cannot be empty.");
             }
 
             blog.BlogTitle = blogTitle;
@@ -53,7 +53,7 @@ namespace service
             return blog;
         }
 
-        public async Task<Blog> GetBlogByIdAsync(int blogId)
+        public async Task<BlogPost> GetBlogByIdAsync(int blogId)
         {
             return await _blogRepository.GetBlogByIdAsync(blogId);
         }
@@ -76,12 +76,12 @@ namespace service
         }
 
 
-        public async Task<IEnumerable<Blog>> GetPostsByCategoryAsync(int categoryId)
+        public async Task<IEnumerable<BlogPost>> GetPostsByCategoryAsync(int categoryId)
         {
             return await _blogRepository.GetPostsByCategoryAsync(categoryId);
         }
 
-        public async Task<IEnumerable<Blog>> SearchBlogPostsAsync(string searchTerm)
+        public async Task<IEnumerable<BlogPost>> SearchBlogPostsAsync(string searchTerm)
         {
             return await _blogRepository.SearchBlogPostsAsync(searchTerm);
         }
@@ -96,9 +96,9 @@ namespace service
             return await _blogRepository.GetCategoriesAsync();
         }
 
-        public async Task<Blog> CreateBlogAsync(string blogTitle, string blogContent)
+        public async Task<BlogPost> CreateBlogAsync(string blogTitle, string blogContent)
         {
-            var newBlog = new Blog
+            var newBlog = new BlogPost
             {
                 BlogTitle = blogTitle,
                 BlogContent = blogContent,
