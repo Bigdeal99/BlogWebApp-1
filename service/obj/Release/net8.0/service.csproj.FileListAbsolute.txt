@@ -1,0 +1,16 @@
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/bin/Release/net8.0/service.deps.json
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/bin/Release/net8.0/service.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/bin/Release/net8.0/service.pdb
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/bin/Release/net8.0/infrastructure.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/bin/Release/net8.0/infrastructure.pdb
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.csproj.AssemblyReference.cache
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.AssemblyInfoInputs.cache
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.AssemblyInfo.cs
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.csproj.CoreCompileInputs.cache
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.sourcelink.json
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.csproj.CopyComplete
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/refint/service.dll
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/service.pdb
+/Users/marcelohani/RiderProjects/blogwebapp/BlogWebApp/service/obj/Release/net8.0/ref/service.dll

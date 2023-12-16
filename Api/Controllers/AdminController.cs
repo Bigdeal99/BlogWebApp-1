@@ -1,8 +1,7 @@
 using api.TransferModels;
+using infrastructure.DataModels;
 
 namespace library.Controllers;
-
-// Api/Controllers/AdminController.cs
 
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +16,20 @@ public class AdminController : ControllerBase
     {
         _adminService = adminService;
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Admin>> GetAdmin(int id)
+    {
+        var admin = await _adminService.GetAdminByIdAsync(id);
+        if (admin == null)
+        {
+            return NotFound();
+        }
+        return Ok(admin);
+    }
+
+    // Additional methods for Create, Update, Delete, etc.
+
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginViewModel model)

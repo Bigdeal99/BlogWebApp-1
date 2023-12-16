@@ -15,7 +15,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OpenApi/8.0.0-preview.7.23375.9": {
+      "Microsoft.AspNetCore.OpenApi/8.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.OpenApi": "1.4.3"
@@ -180,7 +180,7 @@
           }
         }
       },
-      "Npgsql/8.0.0": {
+      "Npgsql/8.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
@@ -196,11 +196,11 @@
           }
         }
       },
-      "Npgsql.DependencyInjection/8.0.0": {
+      "Npgsql.DependencyInjection/8.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0",
-          "Npgsql": "8.0.0"
+          "Npgsql": "8.0.1"
         },
         "compile": {
           "lib/net7.0/Npgsql.DependencyInjection.dll": {
@@ -281,7 +281,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Dapper": "2.1.24",
-          "Npgsql": "8.0.0"
+          "Npgsql": "8.0.1"
         },
         "compile": {
           "bin/placeholder/infrastructure.dll": {}
@@ -327,10 +327,10 @@
         "readme.md"
       ]
     },
-    "Microsoft.AspNetCore.OpenApi/8.0.0-preview.7.23375.9": {
-      "sha512": "asavu+PqUoH2CZh7sj7scNUHbiOVtZR6GJHvqKsKDPh9lwwAFKCVKDbD5/KESa7uTwtES672Rgo/4WW9WNwjaA==",
+    "Microsoft.AspNetCore.OpenApi/8.0.0": {
+      "sha512": "T4mwMvPSOYAp+KeQ4xO8H2rxpiOMJ9W/7yBBkUTMp96AHtGlPN4s7hbax2tM61LxTY775JKL4fiv5grn41EHXw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.openapi/8.0.0-preview.7.23375.9",
+      "path": "microsoft.aspnetcore.openapi/8.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -338,7 +338,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net8.0/Microsoft.AspNetCore.OpenApi.dll",
         "lib/net8.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.8.0.0-preview.7.23375.9.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
@@ -824,10 +824,10 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "Npgsql/8.0.0": {
-      "sha512": "Qiz74U+O7Mv4knrsXgKVYGJjgwoziK+aMFZqz7PtKR3vyGIhZA0tnW6HoUnL3X+YqtmVuhmoKkN8LDWEHMxPbw==",
+    "Npgsql/8.0.1": {
+      "sha512": "/XQX6n2gKQPnRoP5AhOnz33qL5V6CEY2vqluHPIvK4VZqY/sE/dHOFj+/8Ok7Y5Cbkj6/OZOFLZCiaKcryhS9A==",
       "type": "package",
-      "path": "npgsql/8.0.0",
+      "path": "npgsql/8.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -842,15 +842,15 @@
         "lib/netstandard2.0/Npgsql.xml",
         "lib/netstandard2.1/Npgsql.dll",
         "lib/netstandard2.1/Npgsql.xml",
-        "npgsql.8.0.0.nupkg.sha512",
+        "npgsql.8.0.1.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
     },
-    "Npgsql.DependencyInjection/8.0.0": {
-      "sha512": "klSRl7sLt3ZyVpAjllZlBF+JVqn6oSxmSi/KXKSTbf/d1VadvJrQxGHemb5LtAWnr8amQBULED/BmInkLwPSwg==",
+    "Npgsql.DependencyInjection/8.0.1": {
+      "sha512": "zXyCraSSEbqd/o7EWfehuNqKV7T1kAtA8sXpTVtLTdlDVicxCpY7KjxTLrGVtGszjt61qJLpwINYBBfrYuiwvg==",
       "type": "package",
-      "path": "npgsql.dependencyinjection/8.0.0",
+      "path": "npgsql.dependencyinjection/8.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -859,7 +859,7 @@
         "lib/net7.0/Npgsql.DependencyInjection.xml",
         "lib/netstandard2.0/Npgsql.DependencyInjection.dll",
         "lib/netstandard2.0/Npgsql.DependencyInjection.xml",
-        "npgsql.dependencyinjection.8.0.0.nupkg.sha512",
+        "npgsql.dependencyinjection.8.0.1.nupkg.sha512",
         "npgsql.dependencyinjection.nuspec",
         "postgresql.png"
       ]
@@ -967,9 +967,9 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Microsoft.AspNetCore.OpenApi >= 8.0.0-preview.7.23375.9",
+      "Microsoft.AspNetCore.OpenApi >= 8.0.0",
       "Microsoft.AspNetCore.SpaServices.Extensions >= 8.0.0",
-      "Npgsql.DependencyInjection >= 8.0.0",
+      "Npgsql.DependencyInjection >= 8.0.1",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "infrastructure >= 1.0.0",
       "service >= 1.0.0"
@@ -1024,7 +1024,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
-            "version": "[8.0.0-preview.7.23375.9, )"
+            "version": "[8.0.0, )"
           },
           "Microsoft.AspNetCore.SpaServices.Extensions": {
             "target": "Package",
@@ -1032,7 +1032,7 @@
           },
           "Npgsql.DependencyInjection": {
             "target": "Package",
-            "version": "[8.0.0, )"
+            "version": "[8.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

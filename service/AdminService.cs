@@ -1,6 +1,3 @@
-using infrastructure.Repositories;
-
-namespace service;
 
 using System;
 using System.Security.Cryptography;
@@ -8,51 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using infrastructure.DataModels;
 
+
+using infrastructure.Repositories;
+
+namespace service;
+
+
 public class AdminService
 {
-    private readonly BlogRepository _blogRepository;
+    private readonly AdminRepository _adminRepository;
 
-    public AdminService(BlogRepository blogRepository)
+    public AdminService(AdminRepository adminRepository)
     {
-        _blogRepository = blogRepository;
+        _adminRepository = adminRepository;
     }
 
-    public async Task<bool> AuthenticateAdminAsync(string username, string password)
+    public async Task<Admin> GetAdminByIdAsync(int id)
     {
-        var admin = await _blogRepository.GetAdminByUsernameAsync(username);
-
-        if (admin != null)
-        {
-            if (VerifyPasswordHash(password, admin.PasswordHash))
-            {
-                // Password is correct, reset failed login attempts
-                admin.FailedLoginAttempts = 0;
-                await _blogRepository.UpdateAdminAsync(admin);
-
-                return true;
-            }
-            else
-            {
-                // Incorrect password, increment failed login attempts
-                admin.FailedLoginAttempts++;
-                await _blogRepository.UpdateAdminAsync(admin);
-
-                return false;
-            }
-        }
-
-        // Admin not found
-        return false;
+        return await _adminRepository.GetAdminByIdAsync(id);
     }
-
-    private bool VerifyPasswordHash(string password, string storedHash)
+    public async Task<bool> AuthenticateAdminAsync(string modelUsername, string modelPassword)
     {
-        using (var sha256 = SHA256.Create())
-        {
-            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            var hashedPassword = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-
-            return hashedPassword == storedHash;
-        }
+        throw new NotImplementedException();
     }
 }

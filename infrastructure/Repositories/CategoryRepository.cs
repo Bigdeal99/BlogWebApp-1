@@ -10,11 +10,24 @@ namespace infrastructure.Repositories;
 
 public class CategoryRepository
 {
-    private readonly IDbConnection _dbConnection;
+    private NpgsqlDataSource _dataSource;
 
-    public CategoryRepository(string connectionString)
+    public CategoryRepository(NpgsqlDataSource datasource)
     {
-        _dbConnection = new NpgsqlConnection(connectionString);
+        _dataSource = datasource;
     }
+    public async Task<Category> GetCategoryByIdAsync(int id)
+    {
+        string sql = $@"
+SELECT Id, Name, Description
+FROM blog_schema.Category
+WHERE Id = @id;";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return await conn.QueryFirstOrDefaultAsync<Category>(sql, new { id });
+        }
+    }
+
     
 }

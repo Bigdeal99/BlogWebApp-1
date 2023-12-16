@@ -9,14 +9,26 @@ using Npgsql;
 
 namespace infrastructure.Repositories;
 
-
 public class CommentRepository
 {
-    private readonly IDbConnection _dbConnection;
+    private NpgsqlDataSource _dataSource;
 
-    public CommentRepository(string connectionString)
+    public CommentRepository(NpgsqlDataSource datasource)
     {
-        _dbConnection = new NpgsqlConnection(connectionString);
+        _dataSource = datasource;
     }
+    public async Task<Comment> GetCommentByIdAsync(int id)
+    {
+        string sql = $@"
+SELECT Id, Name, Email, Text, PublicationDate, BlogPostId
+FROM blog_schema.Comment
+WHERE Id = @id;";
+
+        using (var conn = _dataSource.OpenConnection())
+        {
+            return await conn.QueryFirstOrDefaultAsync<Comment>(sql, new { id });
+        }
+    }
+
     
 }

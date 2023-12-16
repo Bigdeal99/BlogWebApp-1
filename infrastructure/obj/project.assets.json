@@ -50,7 +50,7 @@
           "buildTransitive/net6.0/Microsoft.Extensions.Logging.Abstractions.targets": {}
         }
       },
-      "Npgsql/8.0.0": {
+      "Npgsql/8.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "8.0.0"
@@ -195,10 +195,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Npgsql/8.0.0": {
-      "sha512": "Qiz74U+O7Mv4knrsXgKVYGJjgwoziK+aMFZqz7PtKR3vyGIhZA0tnW6HoUnL3X+YqtmVuhmoKkN8LDWEHMxPbw==",
+    "Npgsql/8.0.1": {
+      "sha512": "/XQX6n2gKQPnRoP5AhOnz33qL5V6CEY2vqluHPIvK4VZqY/sE/dHOFj+/8Ok7Y5Cbkj6/OZOFLZCiaKcryhS9A==",
       "type": "package",
-      "path": "npgsql/8.0.0",
+      "path": "npgsql/8.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -213,7 +213,7 @@
         "lib/netstandard2.0/Npgsql.xml",
         "lib/netstandard2.1/Npgsql.dll",
         "lib/netstandard2.1/Npgsql.xml",
-        "npgsql.8.0.0.nupkg.sha512",
+        "npgsql.8.0.1.nupkg.sha512",
         "npgsql.nuspec",
         "postgresql.png"
       ]
@@ -222,7 +222,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Dapper >= 2.1.24",
-      "Npgsql >= 8.0.0"
+      "Npgsql >= 8.0.1"
     ]
   },
   "packageFolders": {
@@ -271,7 +271,7 @@
           },
           "Npgsql": {
             "target": "Package",
-            "version": "[8.0.0, )"
+            "version": "[8.0.1, )"
           }
         },
         "imports": [
